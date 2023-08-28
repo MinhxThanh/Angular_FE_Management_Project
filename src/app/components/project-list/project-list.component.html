@@ -1,0 +1,66 @@
+<section id="project-list">
+  <div class="container p-2">
+    <div class="row mt-2">
+      <div class="container col-lg-8 col-md-10 col-sm-12">
+        <app-message></app-message>
+        <div class="card p-0 col-12">
+          <div class="card-body" *ngIf="!projects">
+            <img ngSrc="/assets/images/preview.jpg" alt="empty list" class="img-fluid w-100" height="600" width="800">
+          </div>
+          <div class="card-body col-12" *ngIf="projects">
+            <table class="col-12 table table-hover table-responsive table-striped">
+              <thead>
+              <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Budget</th>
+                <th>Team Size</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of projects, let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.budget | currency}}</td>
+                <td>{{item.teamSize}}</td>
+                <td>{{item.startDate | date: 'dd-MM-yyyy'}}</td>
+                <td>{{item.endDate | date: 'dd-MM-yyyy'}}</td>
+                <td>{{item.status}}</td>
+                <td>
+                  <a class="btn btn-outline-info mx-1" [routerLink]="['/project-edit/' + item._id]"><i class="fa-solid fa-pen-to-square"></i></a>
+                  <button class="btn btn-outline-danger mx-1" (click)="confirmDeleteProject(content, item._id, item.name)">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="model">
+      <div class="model-dialog">
+        <div class="model-dialog-content p-5">
+          <div class="model-header">
+            <h4 class="model-title">Confirm Delete Project</h4>
+          </div>
+          <div class="model-body">
+            <p>{{confirmMessage}}</p>
+          </div>
+          <div class="model-footer text-end">
+            <div class="btn btn-outline-danger btn-sm px-5 py-1 mx-2" (click)="deleteProject()">YES</div>
+            <div class="btn btn-sm btn-outline-dark " (click)="c('Close click')">NO</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</section>
+

@@ -1,0 +1,5 @@
+<ng-container *ngIf="data.message">
+  <a>
+    <ngb-alert [type]="data.messageType" [dismissible]="false">{{data.message}}</ngb-alert>
+  </a>
+</ng-container>

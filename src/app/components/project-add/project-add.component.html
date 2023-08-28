@@ -1,0 +1,84 @@
+<section id="project-add">
+  <div class="container p-2">
+    <div class="row mt-2">
+      <div class="col-8 offset-2">
+        <app-message></app-message>
+        <div class="card">
+          <div class="card-body">
+            <form id="create-project-form" #projectForm="ngForm">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" [(ngModel)]="project.name" class="form-control" name="name" id="name" aria-describedby="nameHid"
+                       placeholder="Enter project name" #name="ngModel" required minlength="4" appForbiddenName="test">
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="ml-2 mb-n2 mt-2">
+                  <small *ngIf="name.errors?.['required']" class="form-text text-sm text-danger">Please enter project name</small>
+                  <small *ngIf="name.errors?.['minlength']" class="form-text text-sm text-danger">Name must be at least 4 characters long.</small>
+                  <small *ngIf="name.errors?.['forbiddenName']" class="form-text text-sm text-danger">Name cannot be test!</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="teamSize">Team Size</label>
+                <input type="number" [(ngModel)]="project.teamSize" class="form-control" name="teamSize" id="teamSize" aria-describedby="teamSizeHid"
+                       placeholder="Enter number members of project!" #teamSize="ngModel" required min="3" max="99">
+                <div *ngIf="teamSize.invalid && (teamSize.dirty || teamSize.touched)" class="ml-2 mb-n2 mt-2">
+                  <small *ngIf="teamSize.errors?.['required']" class="form-text text-sm text-danger">Please enter project team size</small>
+                  <small *ngIf="teamSize.errors?.['min'] || teamSize.errors?.['max']" class="form-text text-sm text-danger">Total member of project must be between 3 and 99</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="budget">Budget</label>
+                <input type="number" [(ngModel)]="project.budget" class="form-control" name="budget" id="budget" aria-describedby="budgetHid"
+                       placeholder="Enter project budget" #budget="ngModel" required min="1000">
+                <div *ngIf="budget.invalid && (budget.dirty || budget.touched)" class="ml-2 mb-n2 mt-2">
+                  <small *ngIf="budget.errors?.['required']" class="form-text text-sm text-danger">Please enter project budget</small>
+                  <small *ngIf="budget.errors?.['min']" class="form-text text-sm text-danger">Budget much larger than 1000</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="expense">Expense</label>
+                <input type="number" [(ngModel)]="project.expense" class="form-control" name="expense" id="expense" aria-describedby="expenseHid"
+                       placeholder="Enter project expenses" #expense="ngModel" required min="-1">
+                <div *ngIf="expense.invalid && (expense.dirty || expense.touched)" class="ml-2 mb-n2 mt-2">
+                  <small *ngIf="expense.errors?.['required']" class="form-text text-sm text-danger">Please enter project expense</small>
+                  <small *ngIf="expense.errors?.['min']" class="form-text text-sm text-danger">Budget much larger than or equal 0</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input type="date" [(ngModel)]="project.startDate" class="form-control" name="startDate" id="startDate" aria-describedby="startDateHid"
+                       placeholder="Enter start date project" #startDate="ngModel" required min="2023-01-01" max="2024-12-31">
+                <div *ngIf="startDate.invalid && (startDate.dirty || startDate.touched)" class="ml-2 mb-n2 mt-2">
+                  <small *ngIf="startDate.errors?.['required']" class="form-text text-sm text-danger">Please enter start date project</small>
+                  <small *ngIf="status.errors?.['min']" class="form-text text-sm text-danger">Not a valid start date</small>
+                  <small *ngIf="status.errors?.['max']" class="form-text text-sm text-danger">Not a valid start date</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input type="date" [(ngModel)]="project.endDate" class="form-control" name="endDate" id="endDate" aria-describedby="endDateHid"
+                       placeholder="Enter end date project" #endDate="ngModel" required min="2023-01-01" max="2024-12-31">
+                <div *ngIf="endDate.invalid && (endDate.dirty || endDate.touched)" class="ml-2 mb-n2 mt-2">
+                  <small *ngIf="endDate.errors?.['required']" class="form-text text-sm text-danger">Please enter start date project</small>
+                  <small *ngIf="status.errors?.['min']" class="form-text text-sm text-danger">Not a valid start date</small>
+                  <small *ngIf="status.errors?.['max']" class="form-text text-sm text-danger">Not a valid start date</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="status">Status</label>
+                <input type="text" [(ngModel)]="project.status" class="form-control" name="status" id="status" aria-describedby="statusHid"
+                       placeholder="Enter project expenses" #status="ngModel" required minlength="3">
+                <div *ngIf="status.invalid && (status.dirty || status.touched)" class="ml-2 mb-n2 mt-2">
+                  <small *ngIf="status.errors?.['required']" class="form-text text-sm text-danger">Please enter project status</small>
+                  <small *ngIf="status.errors?.['minlength']" class="form-text text-sm text-danger">Status much have length larger than 3</small>
+                </div>
+              </div>
+              <div class="card-bottom">
+                <button [disabled]="btnDisabled || !projectForm.valid" (click)="save()" type="submit" class="btn btn-outline-primary text-uppercase py-2 px-5"><i class="fa-solid fa-folder-plus"></i> Create</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

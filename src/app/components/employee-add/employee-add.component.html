@@ -1,0 +1,62 @@
+<section id="employeeAdd">
+  <div class="container p-2">
+    <div class="row mt-2">
+      <div class="col-8 offset-2">
+        <app-message></app-message>
+        <div class="card">
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" [(ngModel)]="employee.name" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="Enter your name">
+                <small id="nameHid" class="form-text text-muted">Please enter your name</small>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" [(ngModel)]="employee.email" class="form-control" name="email" id="email" aria-describedby="emailHid" placeholder="Enter your email">
+                <small id="emailHid" class="form-text text-muted">Please enter your email</small>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" [(ngModel)]="employee.password" class="form-control" name="password" id="password" aria-describedby="passwordHid" placeholder="Enter your password">
+                <small id="passwordHid" class="form-text text-muted">Please enter your password</small>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" [(ngModel)]="employee.phone" class="form-control" name="phone" id="phone" aria-describedby="phoneHid" placeholder="Enter your phone number">
+                <small id="phoneHid" class="form-text text-muted">Please enter your phone</small>
+              </div>
+              <div class="form-group">
+                <label for="zone">Zone</label>
+                <select class="form-control" [(ngModel)]="employee.zone" name="zone" id="zone">
+                  <option>East</option>
+                  <option>West</option>
+                  <option>South</option>
+                  <option>North</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control" [(ngModel)]="employee.status" name="status" id="status">
+                  <option>Working</option>
+                  <option>Resigned</option>
+                  <option>Pending</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="role">Role</label>
+                <select class="form-control" [(ngModel)]="employee.role" name="role" id="role">
+                  <option>Leader</option>
+                  <option>Employee</option>
+                </select>
+              </div>
+              <div class="card-bottom">
+                <button (click)="save()" type="submit" class="btn btn-outline-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

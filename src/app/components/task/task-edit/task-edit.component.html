@@ -1,0 +1,80 @@
+<div class="task-edit">
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h5 class="modal-title text-uppercase">Edit Task</h5>
+    </div>
+    <div class="modal-body">
+      <app-message></app-message>
+      <div class="m-auto" *ngIf="doingEdit">
+        <h2 class="text-center display-3 mt-5">
+          <i class="fa-solid fa-list-check"></i>
+        </h2>
+      </div>
+      <form *ngIf="!doingEdit" #taskEditForm="ngForm">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" [(ngModel)]="task.name" class="form-control" name="name" id="name" aria-describedby="nameHid"
+                 placeholder="Enter task name" #name="ngModel" required minlength="4" appForbiddenName="test">
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="ml-2 mb-n2 mt-2">
+            <small *ngIf="name.errors?.['required']" class="form-text text-sm text-danger">Please enter task name</small>
+            <small *ngIf="name.errors?.['minlength']" class="form-text text-sm text-danger">Name must be at least 4 characters long.</small>
+            <small *ngIf="name.errors?.['appForbiddenName']" class="form-text text-sm text-danger">Name cannot be test!</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="created_at">Start Date</label>
+          <input type="date" [(ngModel)]="task.created_at" class="form-control" name="created_at" id="created_at" aria-describedby="createdAtDateHid"
+                 placeholder="Enter start date task" disabled>
+        </div>
+        <div class="form-group">
+          <label for="due_date">Due Time</label>
+          <input type="date" [(ngModel)]="task.due_date" class="form-control" name="due_date" id="due_date" aria-describedby="dueDateHid"
+                 placeholder="Enter due time task" #dueDate="ngModel" required min="2023-01-01" max="2024-12-31">
+          <div *ngIf="dueDate.invalid && (dueDate.dirty || dueDate.touched)" class="ml-2 mb-n2 mt-2">
+            <small *ngIf="dueDate.errors?.['required']" class="form-text text-sm text-danger">Please due time task</small>
+            <small *ngIf="dueDate.errors?.['min']" class="form-text text-sm text-danger">Not a valid start date</small>
+            <small *ngIf="dueDate.errors?.['max']" class="form-text text-sm text-danger">Not a valid start date</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select [(ngModel)]="task.status" class="form-control" name="status" id="status" aria-describedby="statusHid"
+                  #status="ngModel" required>
+            <option value="Not Started">Not Started</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Prepare">Prepare</option>
+            <option value="Start">Start</option>
+            <option value="Working">Working</option>
+            <option value="Fixing">Fixing</option>
+            <option value="Completed">Completed</option>
+          </select>
+          <div *ngIf="status.invalid && (status.dirty || status.touched)" class="ml-2 mb-n2 mt-2">
+            <small *ngIf="status.errors?.['required']" class="form-text text-sm text-danger">Please enter task status</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="assigned_to">Assigned to</label>
+          <input type="text" id="assigned_to" class="form-control" name="assigned_to" [value]="task.assigned_to" disabled>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea rows="3" [(ngModel)]="task.description" class="form-control" name="description" id="description" aria-describedby="descriptionHid"
+                    placeholder="Enter task description" #name="ngModel" required minlength="4" appForbiddenName="test"></textarea>
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="ml-2 mb-n2 mt-2">
+            <small *ngIf="name.errors?.['required']" class="form-text text-sm text-danger">Please enter task description</small>
+            <small *ngIf="name.errors?.['minlength']" class="form-text text-sm text-danger">Description must be at least 4 characters long.</small>
+            <small *ngIf="name.errors?.['appForbiddenName']" class="form-text text-sm text-danger">Description cannot be test!</small>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer text-center">
+      <button type="button" class="btn btn-dark mx-2" (click)="c('Close click')"><i class="fa-solid fa-xmark"></i> Close</button>
+      <button class="btn btn-outline-success px-5" (click)="updateTask()"><i class="fa-regular fa-pen-to-square"></i> Update</button>
+    </div>
+  </ng-template>
+</div>
+<!-- button click open form edit-->
+<button class="btn btn-outline-info mx-1" (click)="openTask(content)">
+  <i class="fa-solid fa-pen-to-square"></i>
+</button>

@@ -1,0 +1,31 @@
+<section class="row first-section" *ngIf="!dataService.employee">
+  <div class="container">
+    <div class="container d-flex flex-sm-row flex-column">
+      <div class="text-title mr-auto" style="padding: 15% 2% 0 2%;">
+          <h1 class="text-warning text-center text-uppercase fst-italic text-decoration-underline">Please login for using all the features!</h1>
+      </div>
+      <div class="content-left img-gif mt-5">
+        <img src="/assets/gif/login.gif" alt="" class="img-fluid img-re w-75">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="row first-section" *ngIf="dataService.employee" style="background-image: url('/assets/gif/Tag-For-White-Background-File-Hart-S-Inversor-On-White-.gif')">
+  <div class="container">
+    <div class="container">
+      <div class="text-title">
+        <h1 class="text-3d text-center mt-5">
+          Welcome to us site! Now Start to work!
+        </h1>
+      </div>
+      <div class="content-left img-gif text-center mt-5">
+        <img src="/assets/gif/image_processing.gif" alt="" class="img-fluid img-re w-75">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="footer text-center p-3">
+  <p class="text-muted">Copyright © Website 2023</p>
+</section>
